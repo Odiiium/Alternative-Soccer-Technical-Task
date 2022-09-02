@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
-class AimCaster
+class AimCaster : MonoBehaviour
 {
-    Aim aim;
+    [SerializeField] Aim aim;
+    [SerializeField] InputController inputController;
 
-    internal AimCaster(Aim _aim) => aim = _aim;
-
-    internal void CastLine(Vector3 startPosition, Vector3 endPosition)
+    internal void CastLine()
     {
-        aim.AimLine.SetPosition(0, startPosition);
-        aim.AimLine.SetPosition(0, endPosition);
+        aim.AimLine.SetPosition(0, inputController.startTouchPosition);
+        aim.AimLine.SetPosition(1, inputController.endTouchPosition);
     }
-
 }

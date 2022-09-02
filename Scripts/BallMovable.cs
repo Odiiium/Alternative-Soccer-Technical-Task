@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class BallMovable : MonoBehaviour
+public class BallMovable
 {
-
-    Vector2 MoveDirection()
+    internal void DoMove(Transform transform, Vector3 movePosition)
     {
-
-        return new Vector2(0, 0);
+        transform.Translate(movePosition);
     }
 
 }
