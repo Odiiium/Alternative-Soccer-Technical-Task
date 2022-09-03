@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 
-class Ball : MonoBehaviour
+class PlayerBall : MonoBehaviour
 {
-    InputController inputController = new InputController();
-    BallMovable ballMovable = new BallMovable();
-    BallStateMachine playerStateMachine = new BallStateMachine();
+    BallPhysicsModel BallPhysics { get => ballPhysicsModel ??= GetComponent<BallPhysicsModel>(); }
+    BallPhysicsModel ballPhysicsModel;
 
-    private void Update()
-    {
+    void FixedUpdate() => Move();
+    private void OnCollisionEnter(Collision collision) => BallPhysics.moveVector =
+    Vector3.Reflect(BallPhysics.moveVector, collision.GetContact(0).normal);
+    void Move() => BallPhysics.BallMovable.DoMove(gameObject.transform, BallPhysics.moveVector);
 
-        Move();
-    }
 
-    void Move() => ballMovable.DoMove(gameObject.transform, inputController.endTouchPosition - inputController.startTouchPosition);
 }
