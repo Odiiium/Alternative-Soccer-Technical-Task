@@ -5,12 +5,11 @@ public class BallPhysicsModel : MonoBehaviour
 {
     internal Vector3 moveVector;
     BallPhysicsSettings settings = new BallPhysicsSettings();
-    internal BallMovable BallMovable { get => ballMovable ??= new BallMovable(); }
-    BallMovable ballMovable;
+    internal BallMovable ballMovable = new BallMovable();
 
-    private void OnEnable() => InputController.handOverDirectionVector += ChangeMoveVector;
-    private void OnDisable() => InputController.handOverDirectionVector -= ChangeMoveVector;
-    private void Update() => ChangePhysicsEveryFrame();
+    private void OnEnable() =>  TouchProvider.handOverDirectionVector += ChangeMoveVector;
+    private void OnDisable() => TouchProvider.handOverDirectionVector -= ChangeMoveVector;
+    private void FixedUpdate() => ChangePhysicsEveryFrame();
 
     void ChangeMoveVector(Vector3 directionalVector)
     {
@@ -21,11 +20,11 @@ public class BallPhysicsModel : MonoBehaviour
 
     void ChangePhysicsEveryFrame()
     {
-        BallMovable.ReduceAcceleration();
+        ballMovable.ReduceAcceleration();
         ChangeRotateVector();
     }
 
     void ChangeRotateVector() => transform.rotation *=
-        Quaternion.Euler(moveVector * ballMovable.Acceleration / settings.rotateModifier);
+        Quaternion.Euler(new Vector3(moveVector.z, 0, moveVector.x) * ballMovable.Acceleration / settings.rotateModifier);
 
 }

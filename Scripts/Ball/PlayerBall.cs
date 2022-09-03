@@ -8,7 +8,7 @@ class PlayerBall : MonoBehaviour
     void FixedUpdate() => Move();
     private void OnCollisionEnter(Collision collision) => BallPhysics.moveVector =
     Vector3.Reflect(BallPhysics.moveVector, collision.GetContact(0).normal);
-    void Move() => BallPhysics.BallMovable.DoMove(gameObject.transform, BallPhysics.moveVector);
+    void Move() => BallPhysics.ballMovable.Move(gameObject.transform, BallPhysics.moveVector);
 
 
 }
