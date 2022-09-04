@@ -10,7 +10,7 @@ class PlayerBall : MonoBehaviour
     Vector3.Reflect(BallPhysics.moveVector, collision.GetContact(0).normal);
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Coin coin))
+        if (other.gameObject.GetComponent<Coin>()) 
             Destroy(other.gameObject);
     }
 
