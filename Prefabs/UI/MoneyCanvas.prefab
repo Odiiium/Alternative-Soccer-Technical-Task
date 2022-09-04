@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 6050517216852931685}
   - component: {fileID: 6050517216852931686}
   - component: {fileID: 6050517216852931687}
+  - component: {fileID: 6824302413924616958}
   m_Layer: 5
   m_Name: MoneyCanvas
   m_TagString: Untagged
@@ -177,6 +178,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6824302413924616958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6050517216852931688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af17fcf89c1f134ca94de374e68be47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6050517217473510596
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +201,7 @@ GameObject:
   - component: {fileID: 6050517217473510595}
   - component: {fileID: 6050517217473510593}
   - component: {fileID: 6050517217473510594}
+  - component: {fileID: 208813478116211539}
   m_Layer: 5
   m_Name: MoneyPanel
   m_TagString: Untagged
@@ -255,6 +269,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &208813478116211539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6050517217473510596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822f0401cac06fe4a85c55e9c8d5c258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6050517218725033590
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +292,7 @@ GameObject:
   - component: {fileID: 6050517218725033589}
   - component: {fileID: 6050517218725033587}
   - component: {fileID: 6050517218725033588}
+  - component: {fileID: 8896045292629797157}
   m_Layer: 5
   m_Name: MoneyCountText
   m_TagString: Untagged
@@ -335,3 +362,23 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 1000
+--- !u!95 &8896045292629797157
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6050517218725033590}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6250f28d39a0d31428760ab4af23f1ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

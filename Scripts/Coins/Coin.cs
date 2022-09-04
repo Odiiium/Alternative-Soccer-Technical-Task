@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 class Coin : MonoBehaviour
 {
+    internal int currency = 50;
+
     [SerializeField] CoinDestroyParticle coinDestroyParticle;
     ParticleFabric particleFabric = new ParticleFabric();
 

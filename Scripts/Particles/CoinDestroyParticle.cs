@@ -8,7 +8,7 @@ class CoinDestroyParticle : GameParticle
     {
         ParticleSystem[] particlesArray = GetComponentsInChildren<ParticleSystem>();
         for (int i = 0; i < particlesArray.Length; i++) 
-            particlesArray[i].Emit((int)particlesArray[i].emission.rateMultiplier);
+            particlesArray[i].Emit((int)particlesArray[i].emission.rateOverTime.constant);
         base.Start();
 
     }
