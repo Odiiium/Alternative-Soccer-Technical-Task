@@ -29,9 +29,15 @@ public class BallPhysicsModel : MonoBehaviour
     }
 
     internal void ChangeScaleOnHit(Vector3 normal) => transform.localScale =
-        transform.lossyScale + Vector3.ProjectOnPlane(normal, Vector3.up)* 0.6f;
+        transform.localScale - Vector3.ProjectOnPlane(normal, Vector3.up)* 0.6f;
 
     void ChangeRotateVector() => transform.rotation *=
-        Quaternion.Euler(new Vector3(moveVector.z, 0, moveVector.x) * ballMovable.Acceleration / settings.rotateModifier);
+        Quaternion.Euler(Vector3.ProjectOnPlane(moveVector, Vector3.up) *
+            ballMovable.Acceleration / settings.rotateModifier);
 
+    internal void ChangePhysicsParameters(Collision collision)
+    {
+        moveVector = Vector3.Reflect(moveVector, collision.GetContact(0).normal);
+        ChangeScaleOnHit(collision.GetContact(0).normal);
+    }
 }

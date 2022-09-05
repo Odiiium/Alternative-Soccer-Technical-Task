@@ -2,7 +2,7 @@
 class AimCaster : MonoBehaviour
 {
     [SerializeField] Aim aim;
-    [SerializeField] PlayerBall player;
+    [SerializeField] Player player;
 
     float aimLength = 8;
     InputController InputController { get => inputController ??= new InputController(); }

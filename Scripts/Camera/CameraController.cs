@@ -2,7 +2,7 @@
 
 class CameraController : MonoBehaviour
 {
-    [SerializeField] PlayerBall player;
+    [SerializeField] Player player;
     internal CameraMovable CameraMovable { get => cameraMovable ??= new CameraMovable(); }   
     CameraMovable cameraMovable;
     
