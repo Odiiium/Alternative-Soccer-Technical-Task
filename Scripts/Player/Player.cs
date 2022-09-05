@@ -25,12 +25,13 @@ class Player : MonoBehaviour
         }
     }
 
-    void Move() => BallPhysics.ballMovable.Move(gameObject.transform, BallPhysics.moveVector);
-
     void DoOnCollision(Collision collision)
     {
         BallPhysics.ChangePhysicsParameters(collision);
         particleFabric.Create(ricochetParticle, transform.position,
             Quaternion.AngleAxis(Vector3.Angle(Vector3.forward, BallPhysics.moveVector), Vector3.up));
     }
+
+    void Move() => BallPhysics.ballMovable.Move(gameObject.transform, BallPhysics.moveVector);
+
 }

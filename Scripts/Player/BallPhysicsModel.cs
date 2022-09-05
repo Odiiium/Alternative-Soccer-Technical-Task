@@ -19,13 +19,14 @@ public class BallPhysicsModel : MonoBehaviour
     void ChangePhysicsEveryFrame()
     {
         ballMovable.ReduceAcceleration();
-        ChangeRotateVector();
+        DoRotate();
         transform.localScale = Vector3.Lerp(transform.localScale, normalScale, 0.1f);
         Material.color = Color.Lerp(material.color, Color.white, settings.colorInterpolationModifier);
     }
     internal void ChangePhysicsParameters(Collision collision)
     {
         moveVector = Vector3.Reflect(moveVector, collision.GetContact(0).normal);
+        ChangeRotation(moveVector);
         ChangeScaleOnHit(collision.GetContact(0).normal);
         ChangeColor();
     }
@@ -34,11 +35,13 @@ public class BallPhysicsModel : MonoBehaviour
         moveVector = Vector3.ProjectOnPlane(directionalVector, Vector3.up) + Vector3.up * .5f;
         ballMovable.Acceleration = Mathf.Clamp
             (directionalVector.magnitude, settings.minimalAcceleration, settings.maximalAcceleration);
-    }
+        ChangeRotation(directionalVector);
+    } 
+    void ChangeRotation(Vector3 directionalVector) => transform.rotation =
+        Quaternion.AngleAxis(Vector3.Angle(Vector3.forward, directionalVector), Vector3.up);
 
-    void ChangeRotateVector() => transform.rotation *=
-    Quaternion.Euler(Vector3.ProjectOnPlane(moveVector, Vector3.up) *
-        ballMovable.Acceleration / settings.rotateModifier);
+    void DoRotate() => 
+        transform.Rotate(Vector3.right * AccelerationRatio() * 10);
 
     internal void ChangeScaleOnHit(Vector3 normal) => transform.localScale =
         transform.localScale - Vector3.ProjectOnPlane(normal, Vector3.up) *

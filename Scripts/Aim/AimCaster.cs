@@ -3,8 +3,6 @@ class AimCaster : MonoBehaviour
 {
     [SerializeField] Aim aim;
     [SerializeField] Player player;
-
-    float aimLength = 8;
     InputController InputController { get => inputController ??= new InputController(); }
     InputController inputController;
 
@@ -16,7 +14,7 @@ class AimCaster : MonoBehaviour
     internal void CastLine()
     {
         Vector3 playerPosition = player.transform.position;
-        aim.AimLine.SetPosition(0, new Vector3(playerPosition.x, 0, playerPosition.z));
+        aim.AimLine.SetPosition(0, Vector3.ProjectOnPlane(playerPosition, Vector3.up) + Vector3.up * .5f);
         aim.AimLine.SetPosition(1, InputController.TouchProvider.MoveVector() + playerPosition);
     }
 
