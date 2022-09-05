@@ -4,27 +4,24 @@ public class MoneyUIView : MonoBehaviour
 {
     internal int basicTextSize = 25;
     int biggerTextSize = 34;
-    bool isTextBig;
     internal Text Text { get => text ??= GetComponentInChildren<Text>(); }
     Text text;
 
-    internal void InitializeMoneyCount(float money, float operationMoney)
+    internal void InitializeMoneyCount(int money, int operationMoney)
     {
         operationMoney = 0;
         money = 0;
         Text.text = money.ToString();
     }
 
-    internal void ChangeMoneyAmountOnUI(ref float currentMoney, ref float newMoney, float interpolateStep, float interpolateModifier)
+    internal void ChangeMoneyAmountOnUI(ref int currentMoney)
     {
-        currentMoney = Mathf.Lerp(currentMoney, newMoney, interpolateStep) + interpolateModifier;
-        Text.text = ((int)currentMoney).ToString();
-        ChangeTextSize();
+        currentMoney += 1;
+        Text.text = currentMoney.ToString();
+        ChangeTextSize(currentMoney);
     }
 
-    void ChangeTextSize()
-    {
-        Text.fontSize = isTextBig ? basicTextSize : biggerTextSize;
-        isTextBig = !isTextBig;
-    }
+    void ChangeTextSize(int currentMoney) => Text.fontSize =
+        currentMoney % 2 == 0 ? basicTextSize : biggerTextSize;
+
 }

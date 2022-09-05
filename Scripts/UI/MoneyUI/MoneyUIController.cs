@@ -9,19 +9,18 @@ public class MoneyUIController : MonoBehaviour
 
     private void Awake() => View.InitializeMoneyCount(Model.Money, Model.OperationMoney);
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Model.Money < Model.OperationMoney)
-            View.ChangeMoneyAmountOnUI
-                (ref Model.Money, ref Model.OperationMoney, Model.interpolateStep, Model.interpolateModifier);
+            View.ChangeMoneyAmountOnUI(ref Model.Money);
         else SetStandartSettingsToUI();
     }
-
-    internal void AddMoney(int value) => Model.OperationMoney += value;
 
     void SetStandartSettingsToUI()
     {
         Model.Money = Model.OperationMoney;
         View.Text.fontSize = View.basicTextSize;
     }
+    internal void AddMoney(int value) => Model.OperationMoney += value;
+
 }
