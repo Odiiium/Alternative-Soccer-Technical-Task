@@ -36,9 +36,9 @@ public class BallPhysicsModel : MonoBehaviour
         ballMovable.Acceleration = Mathf.Clamp
             (directionalVector.magnitude, settings.minimalAcceleration, settings.maximalAcceleration);
         ChangeRotation(directionalVector);
-    } 
+    }
     void ChangeRotation(Vector3 directionalVector) => transform.rotation =
-        Quaternion.AngleAxis(Vector3.Angle(Vector3.forward, directionalVector), Vector3.up);
+        Quaternion.LookRotation(directionalVector, Vector3.up);
 
     void DoRotate() => 
         transform.Rotate(Vector3.right * AccelerationRatio() * 10);
