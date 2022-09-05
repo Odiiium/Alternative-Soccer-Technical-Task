@@ -1,6 +1,6 @@
 ﻿
 class BallRicochetParticle : GameParticle
 {
-    public override float Time => 3;
+    public override float Time => 2;
 
 }

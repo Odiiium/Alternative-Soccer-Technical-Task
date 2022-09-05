@@ -3,6 +3,9 @@
 class Player : MonoBehaviour
 {
     [SerializeField] MoneyUIController moneyController;
+    [SerializeField] BallRicochetParticle ricochetParticle;
+
+    ParticleFabric particleFabric = new ParticleFabric();
     BallPhysicsModel BallPhysics { get => ballPhysicsModel ??= GetComponentInChildren<BallPhysicsModel>(); }
     BallPhysicsModel ballPhysicsModel;
 
@@ -10,7 +13,7 @@ class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 6) BallPhysics.ChangePhysicsParameters(collision);
+        if (collision.gameObject.layer == 6) DoOnCollision(collision);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,4 +26,11 @@ class Player : MonoBehaviour
     }
 
     void Move() => BallPhysics.ballMovable.Move(gameObject.transform, BallPhysics.moveVector);
+
+    void DoOnCollision(Collision collision)
+    {
+        BallPhysics.ChangePhysicsParameters(collision);
+        particleFabric.Create(ricochetParticle, transform.position,
+            Quaternion.AngleAxis(Vector3.Angle(Vector3.forward, BallPhysics.moveVector), Vector3.up));
+    }
 }

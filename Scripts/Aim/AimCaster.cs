@@ -17,8 +17,7 @@ class AimCaster : MonoBehaviour
     {
         Vector3 playerPosition = player.transform.position;
         aim.AimLine.SetPosition(0, new Vector3(playerPosition.x, 0, playerPosition.z));
-        if (inputController.TouchProvider.MoveVector().magnitude < aimLength)
-            aim.AimLine.SetPosition(1, InputController.TouchProvider.MoveVector() + playerPosition);
+        aim.AimLine.SetPosition(1, InputController.TouchProvider.MoveVector() + playerPosition);
     }
 
 }
